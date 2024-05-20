@@ -9,7 +9,7 @@ public class NetworkingClient_Vladyslav {
 
         Socket client = null;
 
-        int portNumber = 8000;
+        int portNumber = 8000               ;
         if (args.length >= 1) {
             portNumber = Integer.parseInt(args[0]);
         }
