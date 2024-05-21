@@ -1,5 +1,7 @@
 import java.net.*;
 
+
+
 public class Vladyslav_Server {
     public static void main(String args[]) throws Exception {
 // Default port number we are going to use
@@ -25,11 +27,41 @@ public class Vladyslav_Server {
             DatagramPacket data = new DatagramPacket(buf, buf.length);
             serverMulticastSocket.receive(data);
             String msg = new String(data.getData()).trim();
+             double answer;
+            try{
+              answer =findFunc(msg);
+                System.out.println("lösning för "+ msg+" är "+ answer);
+            }catch (Exception e){
+                System.out.println("no mathematical function found");
 
+            }
 
-            System.out.println("Message received from client = " + msg);
         }
         serverMulticastSocket.close();
+    }
+
+    public static double findFunc(String input) {
+        char[] funcs = {'+', '-', '*', '/'};
+
+        // Loopa genom varje tecken i input-strängen
+        for (int i = 0; i < input.length(); i++) {
+            // Kolla om nuvarande tecken är ett av de matematiska tecknen
+            for (char func : funcs) {
+                if (input.charAt(i) == func) {
+                    double part1 = Double.parseDouble(input.substring(0, i));
+                    double part2 = Double.parseDouble(input.substring(i ));
+
+                    switch (input.charAt(i)) {
+                        case '+':return part1 + part2;
+                        case '-':return part1 - part2;
+                        case '*':return part1 * part2;
+                        case '/':return part1 / part2;
+                    }
+                }
+            }
+        }
+        // Om inget matematiskt tecken hittas, returnera ett tomt tecken
+        return '\0';
     }
 }
 
