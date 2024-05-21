@@ -31,6 +31,7 @@ public class Vladyslav_Server {
             try{
               answer =findFunc(msg);
                 System.out.println("lösning för "+ msg+" är "+ answer);
+
             }catch (Exception e){
                 System.out.println("no mathematical function found");
 
@@ -49,7 +50,7 @@ public class Vladyslav_Server {
             for (char func : funcs) {
                 if (input.charAt(i) == func) {
                     double part1 = Double.parseDouble(input.substring(0, i));
-                    double part2 = Double.parseDouble(input.substring(i ));
+                    double part2 = Double.parseDouble(input.substring(i+1 ));
 
                     switch (input.charAt(i)) {
                         case '+':return part1 + part2;

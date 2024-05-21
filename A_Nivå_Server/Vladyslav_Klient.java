@@ -20,8 +20,9 @@ public class Vladyslav_Klient {
         msg = br.readLine();
 // Send the message to Multicast address
         DatagramPacket data = new DatagramPacket (msg.getBytes(), 0, msg.length(), group, portnumber); chatMulticastSocket.send(data);
-        chatMulticastSocket.receive(data);
+
 // Close the socket
+
         chatMulticastSocket.close();
     }
 }
